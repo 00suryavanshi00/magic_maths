@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from functools import lru_cache
 
 app = FastAPI()
 
@@ -6,7 +7,8 @@ app = FastAPI()
 async def root():
     return {"message": "Hello Ctrl T"}
 
-
+# memoize
+@lru_cache(maxsize=None, typed=False)
 def magic_math(N: int) -> int:
     if N < 0:
         raise ValueError("N must be a non-negative integer.")
